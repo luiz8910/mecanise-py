@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PartRequestCreate",
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "enum": ["Freios", "Suspensão", "Motor", "Elétrica", "Transmissão", "Arrefecimento", "Outros"]
+    },
+    "subcategory": { "type": "string" },
+    "vehicle": {
+      "type": "object",
+      "properties": {
+        "plate": { "type": "string" },
+        "brand": { "type": "string" },
+        "model": { "type": "string" },
+        "year": { "type": "integer" },
+        "version": { "type": "string" },
+        "engine": { "type": "string" },
+        "fuel": { "type": "string" },
+        "vin": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "symptoms": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "string" },
+    "attachments": { "type": "array", "items": { "type": "string" } },
+    "urgency": { "type": "string", "enum": ["ALTA", "NORMAL", "ORCAMENTO"] },
+    "location": {
+      "type": "object",
+      "properties": {
+        "cep": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" }
+      },
+      "additionalProperties": true
+    },
+    "preferredBrands": { "type": "array", "items": { "type": "string" } },
+    "maxBudget": { "type": "number" },
+    "consentToShare": { "type": "boolean" },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "whatsappId": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "required": ["category", "vehicle", "urgency"],
+  "additionalProperties": false
+}
